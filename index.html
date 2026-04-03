@@ -142,26 +142,29 @@ textarea.fi{min-height:70px;resize:vertical;font-size:15px;}
 </div>
 
 <div class="card">
-  <div class="card-title">🪪 EIHA Membership <span style="font-size:13px;font-weight:400;color:var(--accent);">— $35 household</span></div>
-  <div style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5;">Add all members in your household — flat $35 per family regardless of how many members.</div>
+  <div class="card-title">🪪 EIHA Membership <span style="font-size:13px;font-weight:400;color:var(--accent);">— $45 household</span></div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5;">Add all members in your household — flat $45 per family regardless of how many members.</div>
   <div id="ipad-mem-list"></div>
   <button class="btn-sm" onclick="ipadAddMember()" id="addMemBtn">+ Add Member</button>
 </div>
 
 <div class="card">
-  <div class="card-title">Five Dog Bear Pack <span style="font-size:13px;font-weight:400;color:var(--accent);">— $75 per pack</span></div>
-  <div style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5;">All 5 dogs must cross and tree to qualify. Fastest time wins. Register up to 5 packs.</div>
+  <div class="card-title">🐻 Bear Race — Pack Entry <span style="font-size:13px;font-weight:400;color:var(--accent);">— $10 per pack</span></div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5;">All dogs must complete the race to qualify. Fastest time wins. Register 3-dog or 5-dog packs (up to 5 total packs).</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+    <button class="btn-sm" onclick="addPack(3)" style="border-color:var(--accent);color:var(--accent);">+ Add 3-Dog Bear Race <span style="font-size:11px;font-weight:400;">($10)</span></button>
+    <button class="btn-sm" onclick="addPack(5)" style="border-color:var(--accent);color:var(--accent);">+ Add 5-Dog Bear Race <span style="font-size:11px;font-weight:400;">($10)</span></button>
+  </div>
   <div id="pack-list"></div>
-  <button class="btn-sm" onclick="addPack()" id="addPackBtn">+ Register a Bear Pack</button>
 </div>
 
 <div class="card">
   <div class="card-title">🐕 Dog Registration</div>
   <div style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.7;">
     <strong style="color:var(--text);">Puppy</strong> — under 1 yr &nbsp;|&nbsp; <strong style="color:var(--text);">Junior</strong> — never trophied in EIHA &nbsp;|&nbsp; <strong style="color:var(--text);">Senior</strong> — any dog<br>
-    <strong style="color:var(--text);">Over the Hill</strong> — 8+ yrs &nbsp;|&nbsp; <strong style="color:var(--text);">Youth</strong> — under 16, female, or MOH approved<br>
-    <strong style="color:var(--text);">Treeing</strong> — barks in 60 sec &nbsp;|&nbsp; <strong style="color:var(--text);">Iron Dog</strong> — last in circle, 50/50 &nbsp;|&nbsp; <strong style="color:var(--text);">Bear Drag</strong> — 50/50<br>
-    <span style="color:var(--accent);font-weight:700;">Heat Events $10 · Bear Drag $30 · Iron Dog $25 · Treeing $10</span>
+    <strong style="color:var(--text);">Over the Hill</strong> — 8+ yrs &nbsp;|&nbsp; <strong style="color:var(--text);">Powderpuff</strong> — women handlers only &nbsp;|&nbsp; <strong style="color:var(--text);">Kids</strong> — youth handler<br>
+    <strong style="color:var(--text);">Treeing</strong> — barks in 60 sec &nbsp;|&nbsp; <strong style="color:var(--text);">Iron Dog</strong> — last dog in circle &nbsp;|&nbsp; <strong style="color:var(--text);">Big Bear Race</strong> — 1st to tree wins<br>
+    <span style="color:var(--accent);font-weight:700;">Scent Drag $5 each · Big Bear Race $10 · Iron Dog $10 · Treeing $10</span>
   </div>
   <div id="dog-list"></div>
   <button class="btn-sm" onclick="addDog()" id="addDogBtn">+ Add Another Dog</button>
@@ -260,7 +263,7 @@ textarea.fi{min-height:70px;resize:vertical;font-size:15px;}
 <div id="tab-about" class="tab-panel"><div class="wrap">
   <div class="card" style="text-align:center;padding:36px 24px;">
     <div style="font-size:48px;margin-bottom:14px;">🐾</div>
-    <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:4px;">UHA Field Trials</div>
+    <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:4px;">EIHA Field Trials</div>
     <div style="font-size:13px;color:var(--text2);margin-bottom:24px;">iPad Sign-Up Form</div>
     <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:20px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:8px;">Designed &amp; Developed by</div>
@@ -282,13 +285,13 @@ textarea.fi{min-height:70px;resize:vertical;font-size:15px;}
 </div>
 
 <script>
-const EVENTS=['Puppy','Junior','Senior','Over the Hill','Youth'];
-const EVENTS_LABEL={'Puppy':'Puppy','Junior':'Junior','Senior':'Senior','Over the Hill':'Over the Hill','Youth':'Youth'};
-const SPECIAL=[{k:'treeing',l:'Treeing Contest',price:10},{k:'ironDog',l:'Iron Dog',price:25},{k:'bearDrag',l:'Bear Drag',price:30}];
-const PRICES={heat:10,bearPack:75,membership:35,treeing:10,ironDog:25,bearDrag:30};
+const EVENTS=['Puppy','Junior','Senior','Old Dog','Powderpuff','Kids'];
+const EVENTS_LABEL={'Puppy':'Puppy','Junior':'Junior','Senior':'Senior','Old Dog':'Old Dog','Powderpuff':'Powderpuff','Kids':'Kids'};
+const SPECIAL=[{k:'treeing',l:'Treeing Contest',price:10},{k:'ironDog',l:'Iron Dog',price:10},{k:'bearDrag',l:'Big Bear Race',price:10}];
+const PRICES={heat:5,bearPack3:10,bearPack5:10,membership:45,treeing:10,ironDog:10,bearDrag:10};
 const URL_KEY='eiha_ipad_url',QUEUE_KEY='eiha_ipad_queue',RECENT_KEY='eiha_ipad_recent';
 const DEFAULT_URL='https://script.google.com/macros/s/AKfycbzuI-o6jwjaVHhznueVVJ3w03DwWdJKlCrTdtTE6f3fBD185ZQjz-QvhgKCCzRIpLEy/exec';
-let scriptUrl=localStorage.getItem(URL_KEY)||DEFAULT_URL;
+let scriptUrl=DEFAULT_URL;
 let queue=JSON.parse(localStorage.getItem(QUEUE_KEY)||'[]');
 let recent=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]');
 let dogCount=1,packCount=0;
@@ -326,20 +329,20 @@ function addDog(){
       <div class="fg"><label>Handler\'s Name</label><input class="fi" id="d${n}-h" placeholder="Handler name" style="font-size:15px;" oninput="calcCost()"></div>
       <div class="fg"><label>Dog\'s Name *</label><input class="fi" id="d${n}-d" placeholder="Dog name" style="font-size:15px;" oninput="calcCost()"></div>
     </div>
-    <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Heat Events <span style="font-weight:400;color:var(--accent);">$10 each</span></div>
+    <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Scent Drag Events <span style="font-weight:400;color:var(--accent);">$5 each</span></div>
     <div class="dog-events" style="margin-bottom:10px;">
-      ${EVENTS.map(ev=>`<label class="dog-ev" onclick="toggleEv(this);calcCost()"><input type="checkbox" value="${ev}"> ${EVENTS_LABEL[ev]}</label>`).join('')}
+      ${EVENTS.map(ev=>`<label class="dog-ev" onclick="toggleEv(this)"><input type="checkbox" value="${ev}"> ${EVENTS_LABEL[ev]}</label>`).join('')}
     </div>
     <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Special Events</div>
     <div class="dog-events">
-      ${SPECIAL.map(sp=>`<label class="dog-ev" onclick="toggleEv(this);calcCost()" style="border-color:rgba(139,92,246,.3);color:var(--text2);"><input type="checkbox" value="${sp.k}"> ${sp.l} <span class="price-tag">$${sp.price}</span></label>`).join('')}
+      ${SPECIAL.map(sp=>`<label class="dog-ev" onclick="toggleEv(this)" style="border-color:rgba(139,92,246,.3);color:var(--text2);"><input type="checkbox" value="${sp.k}"> ${sp.l} <span class="price-tag">$${sp.price}</span></label>`).join('')}
     </div>
     ${n>1?`<button class="btn-sm btn-danger" onclick="removeDog(${n});calcCost()" style="margin-top:10px;font-size:12px;">Remove Dog</button>`:''}`;
   document.getElementById('dog-list').appendChild(div);
   if(dogCount>11)document.getElementById('addDogBtn').style.display='none';
 }
 function removeDog(n){const el=document.getElementById(`dog-${n}`);if(el)el.remove();}
-function toggleEv(label){setTimeout(()=>{label.classList.toggle('on',label.querySelector('input').checked);},0);}
+function toggleEv(label){setTimeout(()=>{label.classList.toggle('on',label.querySelector('input').checked);calcCost();},0);}
 
 let ipadMemCount=0;
 function ipadAddMember(){
@@ -363,44 +366,52 @@ function collectIpadMembers(){
   });return members;
 }
 
-function addPack(){
+function addPack(size){
+  size = size || 5;
   if(packCount>=5)return;const n=++packCount;
   const div=document.createElement('div');div.className='pack-block';div.id=`pack-${n}`;
-  div.innerHTML=`<div class="shdr" style="margin-top:0;">Bear Pack ${n}</div>
-    <div class="row" style="margin-bottom:10px;"><div class="fg"><label>Pack Name *</label><input class="fi" id="p${n}-name" placeholder="e.g. Southern Pack" style="font-size:15px;" oninput="onPackName(${n});calcCost()"></div></div>
-    <div style="font-size:11px;color:var(--text2);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">5 Dog Names</div>
-    <div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog 1 Name</label><input class="fi" id="p${n}-dog1" placeholder="Dog name" style="font-size:15px;"></div></div>
-    <div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog 2 Name</label><input class="fi" id="p${n}-dog2" placeholder="Dog name" style="font-size:15px;"></div></div>
-    <div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog 3 Name</label><input class="fi" id="p${n}-dog3" placeholder="Dog name" style="font-size:15px;"></div></div>
-    <div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog 4 Name</label><input class="fi" id="p${n}-dog4" placeholder="Dog name" style="font-size:15px;"></div></div>
-    <div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog 5 Name</label><input class="fi" id="p${n}-dog5" placeholder="Dog name" style="font-size:15px;"></div></div>
+  let dogInputs='';
+  for(let d=1;d<=size;d++){
+    dogInputs+=`<div class="row" style="margin-bottom:8px;"><div class="fg"><label>Dog ${d} Name</label><input class="fi" id="p${n}-dog${d}" placeholder="Dog name" style="font-size:15px;"></div></div>`;
+  }
+  div.innerHTML=`<input type="hidden" id="p${n}-size" value="${size}">
+    <div class="shdr" style="margin-top:0;">${size}-Dog Bear Race — Pack ${n} <span style="font-weight:400;color:var(--accent);">$10</span></div>
+    <div class="row" style="margin-bottom:10px;"><div class="fg"><label>Handler's Name *</label><input class="fi" id="p${n}-name" placeholder="Handler name" style="font-size:15px;" oninput="onPackName(${n});calcCost()"></div></div>
+    <div style="font-size:11px;color:var(--text2);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">${size} Dog Names</div>
+    ${dogInputs}
     <button class="btn-sm btn-danger" onclick="removePack(${n})" style="margin-top:4px;font-size:12px;">Remove Pack ${n}</button>`;
   document.getElementById('pack-list').appendChild(div);
-  if(packCount>=5)document.getElementById('addPackBtn').style.display='none';calcCost();
+  if(packCount>=5){
+    document.querySelectorAll('[onclick^="addPack"]').forEach(b=>b.style.display='none');
+  }
+  calcCost();
 }
-function removePack(n){const el=document.getElementById(`pack-${n}`);if(el){el.remove();packCount=Math.max(0,packCount-1);document.getElementById('addPackBtn').style.display='';calcCost();}}
+function removePack(n){const el=document.getElementById(`pack-${n}`);if(el){el.remove();packCount=Math.max(0,packCount-1);document.querySelectorAll('[onclick^="addPack"]').forEach(b=>b.style.display='');calcCost();}}
 function onPackName(n){const el=document.getElementById(`pack-${n}`),v=(document.getElementById(`p${n}-name`)||{}).value||'';if(el)el.classList.toggle('filled',!!v.trim());}
 function toggleChk(label){setTimeout(()=>{label.classList.toggle('on',label.querySelector('input').checked);},0);}
 
 function calcCost(){
   let total=0;const lines=[];
   const members=collectIpadMembers();
-  if(members.length){total+=PRICES.membership;lines.push({label:`Membership (${members.length} member${members.length>1?'s':''}) — $35 household`,amt:PRICES.membership});}
+  if(members.length){total+=PRICES.membership;lines.push({label:`Membership (${members.length} member${members.length>1?'s':''}) — $45 household`,amt:PRICES.membership});}
   document.querySelectorAll('.dog-block').forEach(b=>{
     const n=b.id.split('-')[1];
     const dog=(document.getElementById(`d${n}-d`)||{}).value.trim();if(!dog)return;
     const ons=[...b.querySelectorAll('.dog-ev.on input')].map(i=>i.value);
     const heatEvs=ons.filter(e=>EVENTS.includes(e)).length;
     const hasDrag=ons.includes('bearDrag'),hasIron=ons.includes('ironDog'),hasTree=ons.includes('treeing');
-    if(heatEvs){total+=heatEvs*PRICES.heat;lines.push({label:`${dog}: ${heatEvs} heat event${heatEvs>1?'s':''}`,amt:heatEvs*PRICES.heat});}
-    if(hasDrag){total+=PRICES.bearDrag;lines.push({label:`${dog}: Bear Drag`,amt:PRICES.bearDrag});}
+    if(heatEvs){total+=heatEvs*PRICES.heat;lines.push({label:`${dog}: ${heatEvs} scent drag event${heatEvs>1?'s':''}`,amt:heatEvs*PRICES.heat});}
+    if(hasDrag){total+=PRICES.bearDrag;lines.push({label:`${dog}: Big Bear Race`,amt:PRICES.bearDrag});}
     if(hasIron){total+=PRICES.ironDog;lines.push({label:`${dog}: Iron Dog`,amt:PRICES.ironDog});}
     if(hasTree){total+=PRICES.treeing;lines.push({label:`${dog}: Treeing Contest`,amt:PRICES.treeing});}
   });
-  for(let i=1;i<=5;i++){
+  for(let i=1;i<=10;i++){
     const nameEl=document.getElementById(`p${i}-name`);if(!nameEl)continue;
     const pname=nameEl.value.trim();if(!pname)continue;
-    total+=PRICES.bearPack;lines.push({label:`Bear Pack: "${pname}"`,amt:PRICES.bearPack});
+    const sizeEl=document.getElementById(`p${i}-size`);
+    const sz=sizeEl?parseInt(sizeEl.value)||5:5;
+    const packPrice=sz===3?PRICES.bearPack3:PRICES.bearPack5;
+    total+=packPrice;lines.push({label:`${sz}-Dog Bear Race: ${pname}`,amt:packPrice});
   }
   const linesEl=document.getElementById('cost-lines');
   const totalEl=document.getElementById('cost-total-val');
@@ -451,7 +462,7 @@ function renderRecent(){
   if(!recent.length){el.innerHTML='<p style="color:var(--text2);font-size:13px;">No registrations yet today.</p>';return;}
   el.innerHTML=recent.map(r=>{
     const t=new Date(r.timestamp).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-    const ds=r.dogs.map(d=>`${d.dog} (${[d.events,d.treeing==='Yes'?'Treeing':'',d.ironDog==='Yes'?'Iron Dog':'',d.bearDrag==='Yes'?'Bear Drag':''].filter(Boolean).join(', ')||'\u2014'})`).join('; ');
+    const ds=r.dogs.map(d=>`${d.dog} (${[d.events,d.treeing==='Yes'?'Treeing':'',d.ironDog==='Yes'?'Iron Dog':'',d.bearDrag==='Yes'?'Big Bear Race':''].filter(Boolean).join(', ')||'\u2014'})`).join('; ');
     const ps=r.packs&&r.packs.length?r.packs.map(p=>p.name).join(', '):'';
     const contact=[r.phone,r.email].filter(Boolean).join(' \u00b7 ');
     return`<div class="recent-item"><div class="rdot ${r._sent?'':'pend'}"></div><div style="flex:1;min-width:0;">
@@ -473,7 +484,7 @@ function clearForm(){
   document.getElementById('dog-list').innerHTML='';dogCount=1;
   document.getElementById('addDogBtn').style.display='';addDog();
   document.getElementById('pack-list').innerHTML='';packCount=0;
-  document.getElementById('addPackBtn').style.display='';
+  document.querySelectorAll('[onclick^="addPack"]').forEach(b=>b.style.display='');
   calcCost();document.getElementById('f-first').focus();
 }
 function saveUrl(){const v=(document.getElementById('su-url').value||'').trim();if(!v||!v.startsWith('http')){setUrlMsg('Enter a valid URL starting with https://','red');return;}if(v===DEFAULT_URL){setUrlMsg('That is already the default URL \u2014 no change needed.','green');return;}scriptUrl=v;localStorage.setItem(URL_KEY,v);setUrlMsg('\u2713 URL updated! Tap Test Connection to verify.','green');checkConn();}
@@ -644,12 +655,14 @@ function buildEntry() {
     dogs.push({ handler, dog, events: ons.filter(e => EVENTS.includes(e)).join(', '), treeing: ons.includes('treeing') ? 'Yes' : '', ironDog: ons.includes('ironDog') ? 'Yes' : '', bearDrag: ons.includes('bearDrag') ? 'Yes' : '' });
   });
   const packs = [];
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 10; i++) {
     const nameEl = document.getElementById(`p${i}-name`); if (!nameEl) continue;
     const pname = nameEl.value.trim(); if (!pname) continue;
+    const sizeEl = document.getElementById(`p${i}-size`);
+    const sz = sizeEl ? parseInt(sizeEl.value) || 5 : 5;
     const packDogs = [];
-    for (let d = 1; d <= 5; d++) { const dn = (document.getElementById(`p${i}-dog${d}`) || {}).value.trim(); if (dn) packDogs.push({ dog: dn, handler: `${first} ${last}` }); }
-    packs.push({ name: pname, owner: `${first} ${last}`, dogs: packDogs });
+    for (let d = 1; d <= sz; d++) { const dn = (document.getElementById(`p${i}-dog${d}`) || {}).value.trim(); if (dn) packDogs.push({ dog: dn, handler: `${first} ${last}` }); }
+    packs.push({ name: pname, owner: `${first} ${last}`, size: sz, dogs: packDogs });
   }
   const members = collectIpadMembers();
   const totalDue = calcCost();
